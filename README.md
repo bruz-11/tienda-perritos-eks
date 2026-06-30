@@ -39,5 +39,14 @@ Cada vez que se realiza un `push` a la rama `main`, el pipeline ejecuta los sigu
 Si se necesita operar el clúster manualmente mediante la terminal (`CloudShell` o local con AWS CLI configurado):
 
 Verificar estado de los Nodos:
-```bash
+
 kubectl get nodes
+
+Verificar estado de los Pods y Servicios:
+
+kubectl get pods -n tienda
+kubectl get svc -n tienda
+
+Revisar el estado del Autoescalado (HPA):
+
+kubectl get hpa -n tienda
