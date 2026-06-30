@@ -40,8 +40,9 @@ jobs:
     - name: 5. Conectar al Clúster EKS
       run: aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}
 
-    - name: 6. Desplegar Infraestructura
+    - name: 6. Desplegar Infraestructura (Corregido)
       run: |
+        kubectl apply -f k8s/namespace.yaml
         kubectl apply -f k8s/
         kubectl rollout restart deployment/tienda-db -n tienda
         kubectl rollout restart deployment/tienda-backend -n tienda
