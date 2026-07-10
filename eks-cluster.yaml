@@ -1,0 +1,14 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: tienda-perritos-cluster
+  region: us-east-1
+
+managedNodeGroups:
+  - name: nodegroup-tienda
+    instanceType: t3.medium
+    minSize: 2
+    maxSize: 4
+    iam:
+      instanceRoleARN: "arn:aws:iam::360275983990:role/c218120a5504690l15831228t1w360275983-LabEksNodeRole-xKG5v868zG1p"
