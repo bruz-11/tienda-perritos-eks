@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: 251531211175.dkr.ecr.us-east-1.amazonaws.com/tienda-db:eks-v1
+          image: 360275983990.dkr.ecr.us-east-1.amazonaws.com/tienda-db:eks-v1
           ports:
             - containerPort: 3306
           env:
