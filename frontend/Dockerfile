@@ -1,12 +1,12 @@
-FROM nginx:alpine
+FROM alpine AS builder
+WORKDIR /app
+COPY index.html app.js ./
 
-# Copiar configuración de NGINX
+FROM nginx:alpine
 COPY default.conf /etc/nginx/conf.d/default.conf
 
-# Copiar archivos estáticos
-COPY index.html /usr/share/nginx/html/
-COPY app.js /usr/share/nginx/html/
+COPY --from=builder /app/index.html /usr/share/nginx/html/
+COPY --from=builder /app/app.js /usr/share/nginx/html/
 
 EXPOSE 80
-
 CMD ["nginx", "-g", "daemon off;"]

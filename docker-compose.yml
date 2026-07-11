@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  db:
+    build: ./db
+    container_name: tienda-db-local
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=tienda
+    ports:
+      - "3306:3306"
+
+  backend:
+    build: ./backend
+    container_name: tienda-backend-local
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=rootpassword
+      - DB_NAME=tienda
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    container_name: tienda-frontend-local
+    environment:
+      - BACKEND_API_URL=http://localhost:3001
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
